@@ -1,16 +1,28 @@
 {
   "__inputs": [
     {
-      "name": "DS_INFLUXDBHOMEASSISTANT",
-      "label": "InfluxDBHomeAssistant",
+      "name": "DS_INFLUXDB",
+      "label": "InfluxDB",
       "description": "",
       "type": "datasource",
       "pluginId": "influxdb",
       "pluginName": "InfluxDB"
+    },
+    {
+      "name": "DS_EXPRESSION",
+      "label": "Expression",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "__expr__"
     }
   ],
   "__elements": {},
   "__requires": [
+    {
+      "type": "datasource",
+      "id": "__expr__",
+      "version": "1.0.0"
+    },
     {
       "type": "panel",
       "id": "barchart",
@@ -27,7 +39,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "9.5.2"
+      "version": "10.1.2"
     },
     {
       "type": "datasource",
@@ -74,13 +86,26 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": null,
-  "links": [],
+  "links": [
+    {
+      "asDropdown": false,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
+      "tags": [],
+      "targetBlank": false,
+      "title": "New link",
+      "tooltip": "",
+      "type": "dashboards",
+      "url": ""
+    }
+  ],
   "liveNow": false,
   "panels": [
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "${DS_INFLUXDBHOMEASSISTANT}"
+        "uid": "${DS_INFLUXDB}"
       },
       "description": "",
       "fieldConfig": {
@@ -140,13 +165,13 @@
         "showUnfilled": true,
         "valueMode": "color"
       },
-      "pluginVersion": "9.5.2",
+      "pluginVersion": "10.1.2",
       "targets": [
         {
           "alias": "Total",
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_INFLUXDBHOMEASSISTANT}"
+            "uid": "${DS_INFLUXDB}"
           },
           "groupBy": [
             {
@@ -185,15 +210,15 @@
             {
               "key": "entity_id",
               "operator": "=",
-              "value": "hm800_power"
+              "value": "hoymiles_garage_power"
             }
           ]
         },
         {
-          "alias": "Ost",
+          "alias": "CH1",
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_INFLUXDBHOMEASSISTANT}"
+            "uid": "${DS_INFLUXDB}"
           },
           "groupBy": [
             {
@@ -233,15 +258,15 @@
             {
               "key": "entity_id",
               "operator": "=",
-              "value": "hm800_ch2_power"
+              "value": "hoymiles_garage_ch1_power"
             }
           ]
         },
         {
-          "alias": "West",
+          "alias": "CH2",
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_INFLUXDBHOMEASSISTANT}"
+            "uid": "${DS_INFLUXDB}"
           },
           "groupBy": [
             {
@@ -281,7 +306,7 @@
             {
               "key": "entity_id",
               "operator": "=",
-              "value": "hm800_ch1_power"
+              "value": "hoymiles_garage_ch2_power"
             }
           ]
         }
@@ -292,7 +317,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "${DS_INFLUXDBHOMEASSISTANT}"
+        "uid": "${DS_INFLUXDB}"
       },
       "description": "",
       "fieldConfig": {
@@ -328,7 +353,7 @@
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "light-yellow",
+                  "fixedColor": "semi-dark-orange",
                   "mode": "fixed"
                 }
               }
@@ -337,7 +362,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "Ost"
+              "options": "CH1"
             },
             "properties": [
               {
@@ -352,7 +377,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "West"
+              "options": "CH2"
             },
             "properties": [
               {
@@ -374,7 +399,7 @@
       },
       "id": 123134,
       "options": {
-        "displayMode": "gradient",
+        "displayMode": "lcd",
         "minVizHeight": 10,
         "minVizWidth": 0,
         "orientation": "vertical",
@@ -388,13 +413,13 @@
         "showUnfilled": true,
         "valueMode": "color"
       },
-      "pluginVersion": "9.5.2",
+      "pluginVersion": "10.1.2",
       "targets": [
         {
           "alias": "Total",
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_INFLUXDBHOMEASSISTANT}"
+            "uid": "${DS_INFLUXDB}"
           },
           "groupBy": [
             {
@@ -434,15 +459,15 @@
             {
               "key": "entity_id",
               "operator": "=",
-              "value": "hm800_yieldtotal"
+              "value": "hoymiles_garage_yieldtotal"
             }
           ]
         },
         {
-          "alias": "Ost",
+          "alias": "CH1",
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_INFLUXDBHOMEASSISTANT}"
+            "uid": "${DS_INFLUXDB}"
           },
           "groupBy": [
             {
@@ -483,15 +508,15 @@
             {
               "key": "entity_id",
               "operator": "=",
-              "value": "hm800_ch2_yieldtotal"
+              "value": "hoymiles_garage_ch1_yieldtotal"
             }
           ]
         },
         {
-          "alias": "West",
+          "alias": "CH2",
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_INFLUXDBHOMEASSISTANT}"
+            "uid": "${DS_INFLUXDB}"
           },
           "groupBy": [
             {
@@ -531,7 +556,7 @@
             {
               "key": "entity_id",
               "operator": "=",
-              "value": "hm800_ch1_yieldtotal"
+              "value": "hoymiles_garage_ch2_yieldtotal"
             }
           ]
         }
@@ -542,7 +567,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "${DS_INFLUXDBHOMEASSISTANT}"
+        "uid": "${DS_INFLUXDB}"
       },
       "fieldConfig": {
         "defaults": {
@@ -639,7 +664,7 @@
           "alias": "Tagesertrag",
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_INFLUXDBHOMEASSISTANT}"
+            "uid": "${DS_INFLUXDB}"
           },
           "groupBy": [
             {
@@ -684,7 +709,7 @@
             {
               "key": "entity_id",
               "operator": "=",
-              "value": "hm800_yieldday"
+              "value": "hoymiles_garage_yieldday"
             }
           ]
         }
@@ -696,7 +721,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "${DS_INFLUXDBHOMEASSISTANT}"
+        "uid": "${DS_INFLUXDB}"
       },
       "fieldConfig": {
         "defaults": {
@@ -767,13 +792,13 @@
         "showUnfilled": true,
         "valueMode": "color"
       },
-      "pluginVersion": "9.5.2",
+      "pluginVersion": "10.1.2",
       "targets": [
         {
           "alias": "Total",
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_INFLUXDBHOMEASSISTANT}"
+            "uid": "${DS_INFLUXDB}"
           },
           "groupBy": [
             {
@@ -818,15 +843,15 @@
             {
               "key": "entity_id",
               "operator": "=",
-              "value": "hm800_yieldday"
+              "value": "hoymiles_garage_yieldday"
             }
           ]
         },
         {
-          "alias": "Ost",
+          "alias": "CH1",
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_INFLUXDBHOMEASSISTANT}"
+            "uid": "${DS_INFLUXDB}"
           },
           "groupBy": [
             {
@@ -872,15 +897,15 @@
             {
               "key": "entity_id",
               "operator": "=",
-              "value": "hm800_ch2_yieldday"
+              "value": "hoymiles_garage_ch1_yieldday"
             }
           ]
         },
         {
-          "alias": "West",
+          "alias": "CH2",
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_INFLUXDBHOMEASSISTANT}"
+            "uid": "${DS_INFLUXDB}"
           },
           "groupBy": [
             {
@@ -926,7 +951,7 @@
             {
               "key": "entity_id",
               "operator": "=",
-              "value": "hm800_ch1_yieldday"
+              "value": "hoymiles_garage_ch2_yieldday"
             }
           ]
         }
@@ -937,12 +962,12 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "${DS_INFLUXDBHOMEASSISTANT}"
+        "uid": "${DS_INFLUXDB}"
       },
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "palette-classic"
+            "mode": "fixed"
           },
           "custom": {
             "axisCenteredZero": false,
@@ -958,6 +983,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "smooth",
             "lineWidth": 1,
             "pointSize": 5,
@@ -975,7 +1001,7 @@
             }
           },
           "mappings": [],
-          "max": 800,
+          "max": 1000,
           "min": 0,
           "thresholds": {
             "mode": "absolute",
@@ -996,28 +1022,13 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "Leistung Westen"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
               "options": "Gesamtleistung AC"
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "light-yellow",
+                  "fixedColor": "semi-dark-orange",
                   "mode": "fixed"
                 }
               }
@@ -1026,13 +1037,28 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "units.mean"
+              "options": "Leistung CH1"
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "#6f6f6f",
+                  "fixedColor": "green",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Leistung CH2"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "blue",
                   "mode": "fixed"
                 }
               }
@@ -1091,11 +1117,50 @@
             },
             "properties": [
               {
-                "id": "unit",
-                "value": "kwatt"
+                "id": "max",
+                "value": 1000
               },
               {
-                "id": "max"
+                "id": "custom.fillOpacity",
+                "value": 10
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "light-purple",
+                  "mode": "fixed"
+                }
+              },
+              {
+                "id": "unit",
+                "value": "watt"
+              }
+            ]
+          },
+          {
+            "__systemRef": "hideSeriesFrom",
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "exclude",
+                "names": [
+                  "Sonne",
+                  "Leistung Zaehler",
+                  "Gesamtleistung AC",
+                  "forecast"
+                ],
+                "prefix": "All except:",
+                "readOnly": true
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": true
+                }
               }
             ]
           }
@@ -1122,10 +1187,10 @@
       },
       "targets": [
         {
-          "alias": "Leistung Osten",
+          "alias": "Leistung CH1",
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_INFLUXDBHOMEASSISTANT}"
+            "uid": "${DS_INFLUXDB}"
           },
           "groupBy": [
             {
@@ -1164,15 +1229,15 @@
             {
               "key": "entity_id",
               "operator": "=",
-              "value": "hm800_ch2_power"
+              "value": "hoymiles_garage_ch1_power"
             }
           ]
         },
         {
-          "alias": "Leistung Westen",
+          "alias": "Leistung CH2",
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_INFLUXDBHOMEASSISTANT}"
+            "uid": "${DS_INFLUXDB}"
           },
           "groupBy": [
             {
@@ -1212,7 +1277,7 @@
             {
               "key": "entity_id",
               "operator": "=",
-              "value": "hm800_ch1_power"
+              "value": "hoymiles_garage_ch2_power"
             }
           ]
         },
@@ -1220,7 +1285,7 @@
           "alias": "Gesamtleistung AC",
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_INFLUXDBHOMEASSISTANT}"
+            "uid": "${DS_INFLUXDB}"
           },
           "groupBy": [
             {
@@ -1260,7 +1325,7 @@
             {
               "key": "entity_id",
               "operator": "=",
-              "value": "hm800_power"
+              "value": "hoymiles_garage_power"
             }
           ]
         },
@@ -1268,7 +1333,7 @@
           "alias": "Sonne",
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_INFLUXDBHOMEASSISTANT}"
+            "uid": "${DS_INFLUXDB}"
           },
           "groupBy": [
             {
@@ -1285,10 +1350,10 @@
             }
           ],
           "hide": false,
-          "measurement": "units",
+          "measurement": "°",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT mean(\"elevation\") FROM \"units\" WHERE (\"entity_id\" = 'sun') AND $timeFilter GROUP BY time($__interval) fill(null)",
+          "query": "SELECT mean(\"value\") FROM \"autogen\".\"°\" WHERE (\"entity_id\"::tag = 'sun_solar_elevation') AND $timeFilter GROUP BY time($__interval) fill(null)",
           "rawQuery": false,
           "refId": "D",
           "resultFormat": "time_series",
@@ -1296,7 +1361,7 @@
             [
               {
                 "params": [
-                  "elevation"
+                  "value"
                 ],
                 "type": "field"
               },
@@ -1310,7 +1375,7 @@
             {
               "key": "entity_id",
               "operator": "=",
-              "value": "sun"
+              "value": "sun_solar_elevation"
             }
           ]
         },
@@ -1318,7 +1383,7 @@
           "alias": "Leistung Zaehler",
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_INFLUXDBHOMEASSISTANT}"
+            "uid": "${DS_INFLUXDB}"
           },
           "groupBy": [
             {
@@ -1338,6 +1403,8 @@
           "measurement": "W",
           "orderByTime": "ASC",
           "policy": "default",
+          "query": "SELECT mean(\"value\")  FROM \"W\" WHERE (\"entity_id\" = 'powerfox_evi_power') AND $timeFilter GROUP BY time($__interval) fill(null)",
+          "rawQuery": false,
           "refId": "E",
           "resultFormat": "time_series",
           "select": [
@@ -1351,12 +1418,6 @@
               {
                 "params": [],
                 "type": "mean"
-              },
-              {
-                "params": [
-                  " / 1000"
-                ],
-                "type": "math"
               }
             ]
           ],
@@ -1364,24 +1425,72 @@
             {
               "key": "entity_id",
               "operator": "=",
-              "value": "hichi_gth_sml_power_curr"
+              "value": "powerfox_evi_power"
+            }
+          ]
+        },
+        {
+          "alias": "forecast",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_INFLUXDB}"
+          },
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "W",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "F",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "entity_id::tag",
+              "operator": "=",
+              "value": "power_production_now"
             }
           ]
         }
       ],
-      "title": "Leistung HM800",
+      "title": "Leistung HM600",
       "type": "timeseries"
     },
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "${DS_INFLUXDBHOMEASSISTANT}"
+        "uid": "${DS_INFLUXDB}"
       },
       "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "palette-classic"
+            "mode": "fixed"
           },
           "custom": {
             "axisCenteredZero": false,
@@ -1397,6 +1506,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "smooth",
             "lineWidth": 1,
             "pointSize": 5,
@@ -1435,7 +1545,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "Irradiation Osten"
+              "options": "Irradiation CH1"
             },
             "properties": [
               {
@@ -1450,7 +1560,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "Irradiation Westen"
+              "options": "Irradiation CH2"
             },
             "properties": [
               {
@@ -1459,6 +1569,56 @@
                   "fixedColor": "blue",
                   "mode": "fixed"
                 }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Sonne"
+            },
+            "properties": [
+              {
+                "id": "custom.lineStyle",
+                "value": {
+                  "dash": [
+                    10,
+                    10
+                  ],
+                  "fill": "dash"
+                }
+              },
+              {
+                "id": "custom.fillOpacity",
+                "value": 0
+              },
+              {
+                "id": "custom.axisPlacement",
+                "value": "right"
+              },
+              {
+                "id": "unit",
+                "value": "degree"
+              },
+              {
+                "id": "custom.axisSoftMax",
+                "value": 90
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "forecast"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "percent"
+              },
+              {
+                "id": "custom.axisPlacement",
+                "value": "auto"
               }
             ]
           }
@@ -1485,10 +1645,10 @@
       },
       "targets": [
         {
-          "alias": "Irradiation Osten",
+          "alias": "Irradiation CH1",
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_INFLUXDBHOMEASSISTANT}"
+            "uid": "${DS_INFLUXDB}"
           },
           "groupBy": [
             {
@@ -1527,15 +1687,15 @@
             {
               "key": "entity_id",
               "operator": "=",
-              "value": "hm800_ch2_irradiation"
+              "value": "hoymiles_garage_ch1_irradiation"
             }
           ]
         },
         {
-          "alias": "Irradiation Westen",
+          "alias": "Irradiation CH2",
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_INFLUXDBHOMEASSISTANT}"
+            "uid": "${DS_INFLUXDB}"
           },
           "groupBy": [
             {
@@ -1575,7 +1735,113 @@
             {
               "key": "entity_id",
               "operator": "=",
-              "value": "hm800_ch1_irradiation"
+              "value": "hoymiles_garage_ch2_irradiation"
+            }
+          ]
+        },
+        {
+          "alias": "forecast",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_INFLUXDB}"
+          },
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "W",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT mean(\"value\")  / 6 FROM \"W\" WHERE (\"entity_id\"::tag = 'power_production_now') AND $timeFilter GROUP BY time($__interval) fill(null)",
+          "rawQuery": true,
+          "refId": "D",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [
+                  " / 100"
+                ],
+                "type": "math"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "entity_id::tag",
+              "operator": "=",
+              "value": "power_production_now"
+            }
+          ]
+        },
+        {
+          "alias": "Sonne",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_INFLUXDB}"
+          },
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "°",
+          "orderByTime": "ASC",
+          "policy": "autogen",
+          "query": "SELECT mean(\"value\") FROM \"autogen\".\"°\" WHERE (\"entity_id\"::tag = 'sun_solar_elevation') AND $timeFilter GROUP BY time($__interval) fill(null)",
+          "rawQuery": false,
+          "refId": "C",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "entity_id::tag",
+              "operator": "=",
+              "value": "sun_solar_elevation"
             }
           ]
         }
@@ -1586,7 +1852,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "${DS_INFLUXDBHOMEASSISTANT}"
+        "uid": "${DS_INFLUXDB}"
       },
       "description": "",
       "fieldConfig": {
@@ -1598,11 +1864,10 @@
           "custom": {
             "axisCenteredZero": false,
             "axisColorMode": "text",
-            "axisGridShow": true,
             "axisLabel": "",
             "axisPlacement": "auto",
-            "fillOpacity": 100,
-            "gradientMode": "hue",
+            "fillOpacity": 80,
+            "gradientMode": "none",
             "hideFrom": {
               "legend": false,
               "tooltip": false,
@@ -1617,7 +1882,7 @@
             }
           },
           "mappings": [],
-          "max": 1,
+          "max": 2,
           "min": 0,
           "thresholds": {
             "mode": "absolute",
@@ -1634,6 +1899,21 @@
           {
             "matcher": {
               "id": "byName",
+              "options": "Tageseinspeisung"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#a089ab",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
               "options": "Time"
             },
             "properties": [
@@ -1642,26 +1922,11 @@
                 "value": "time:DD.MM"
               }
             ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Tageseinspeisung"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "green",
-                  "mode": "fixed"
-                }
-              }
-            ]
           }
         ]
       },
       "gridPos": {
-        "h": 6,
+        "h": 9,
         "w": 8,
         "x": 0,
         "y": 14
@@ -1669,8 +1934,8 @@
       "hideTimeOverride": false,
       "id": 123147,
       "options": {
-        "barRadius": 0.25,
-        "barWidth": 0.86,
+        "barRadius": 0,
+        "barWidth": 0.87,
         "fullHighlight": false,
         "groupWidth": 0.7,
         "legend": {
@@ -1679,23 +1944,24 @@
           "placement": "bottom",
           "showLegend": false
         },
-        "orientation": "vertical",
+        "orientation": "auto",
         "showValue": "auto",
-        "stacking": "none",
+        "stacking": "normal",
         "tooltip": {
-          "mode": "multi",
+          "mode": "single",
           "sort": "none"
         },
         "xField": "Time",
         "xTickLabelRotation": 0,
         "xTickLabelSpacing": 100
       },
+      "pluginVersion": "10.0.3",
       "targets": [
         {
           "alias": "Tageseinspeisung",
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_INFLUXDBHOMEASSISTANT}"
+            "uid": "${DS_INFLUXDB}"
           },
           "groupBy": [
             {
@@ -1714,8 +1980,8 @@
           "measurement": "kWh",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT max(\"value\")-min(\"value\") FROM \"kWh\" WHERE (\"entity_id\" = 'hichi_gth_sml_total_out') AND $timeFilter GROUP BY time(1d) fill(0)",
-          "rawQuery": true,
+          "query": "SELECT difference(mean(\"value\")) FROM \"default\".\"kWh\" WHERE (\"entity_id\" = 'powerfox_evi_energy_gift') AND $timeFilter GROUP BY time(1d) fill(0)",
+          "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -1729,6 +1995,10 @@
               {
                 "params": [],
                 "type": "max"
+              },
+              {
+                "params": [],
+                "type": "difference"
               }
             ]
           ],
@@ -1736,7 +2006,7 @@
             {
               "key": "entity_id",
               "operator": "=",
-              "value": "hichi_gth_sml_total_in"
+              "value": "powerfox_evi_energy_gift"
             }
           ]
         }
@@ -1749,13 +2019,14 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "${DS_INFLUXDBHOMEASSISTANT}"
+        "uid": "${DS_INFLUXDB}"
       },
-      "description": "",
+      "description": "Zählerstand Verbrauch",
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "thresholds"
+            "fixedColor": "dark-purple",
+            "mode": "fixed"
           },
           "decimals": 1,
           "mappings": [],
@@ -1797,12 +2068,12 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.5.2",
+      "pluginVersion": "10.1.2",
       "targets": [
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_INFLUXDBHOMEASSISTANT}"
+            "uid": "${DS_INFLUXDB}"
           },
           "groupBy": [
             {
@@ -1841,24 +2112,24 @@
             {
               "key": "entity_id",
               "operator": "=",
-              "value": "hichi_gth_sml_total_in"
+              "value": "powerfox_evi_energy_use"
             }
           ]
         }
       ],
-      "title": "Zählerstand Verbrauch",
+      "title": "Verbrauch",
       "type": "stat"
     },
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "${DS_INFLUXDBHOMEASSISTANT}"
+        "uid": "${DS_INFLUXDB}"
       },
       "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
-            "fixedColor": "red",
+            "fixedColor": "semi-dark-purple",
             "mode": "fixed"
           },
           "custom": {
@@ -1883,7 +2154,7 @@
             }
           },
           "mappings": [],
-          "max": 60,
+          "max": 20,
           "min": 0,
           "thresholds": {
             "mode": "absolute",
@@ -1931,7 +2202,7 @@
         ]
       },
       "gridPos": {
-        "h": 6,
+        "h": 9,
         "w": 8,
         "x": 12,
         "y": 14
@@ -1965,7 +2236,7 @@
           "alias": "Tagesverbrauch",
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_INFLUXDBHOMEASSISTANT}"
+            "uid": "${DS_INFLUXDB}"
           },
           "groupBy": [
             {
@@ -1985,7 +2256,7 @@
           "orderByTime": "ASC",
           "policy": "default",
           "query": "SELECT max(\"value\")-min(\"value\") FROM \"kWh\" WHERE (\"entity_id\" = 'hichi_gth_sml_total_in') AND $timeFilter GROUP BY time(1d) fill(0)",
-          "rawQuery": true,
+          "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -1999,6 +2270,10 @@
               {
                 "params": [],
                 "type": "max"
+              },
+              {
+                "params": [],
+                "type": "difference"
               }
             ]
           ],
@@ -2006,7 +2281,7 @@
             {
               "key": "entity_id",
               "operator": "=",
-              "value": "hichi_gth_sml_total_in"
+              "value": "powerfox_evi_energy_use"
             }
           ]
         }
@@ -2019,13 +2294,14 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "${DS_INFLUXDBHOMEASSISTANT}"
+        "uid": "${DS_INFLUXDB}"
       },
       "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "thresholds"
+            "fixedColor": "#a089ab",
+            "mode": "fixed"
           },
           "decimals": 1,
           "mappings": [],
@@ -2048,7 +2324,7 @@
         "x": 8,
         "y": 17
       },
-      "id": 123146,
+      "id": 123149,
       "options": {
         "colorMode": "value",
         "graphMode": "none",
@@ -2058,17 +2334,17 @@
           "calcs": [
             "lastNotNull"
           ],
-          "fields": "",
+          "fields": "/^C$/",
           "values": false
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.5.2",
+      "pluginVersion": "10.1.2",
       "targets": [
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_INFLUXDBHOMEASSISTANT}"
+            "uid": "${DS_INFLUXDB}"
           },
           "groupBy": [
             {
@@ -2084,9 +2360,12 @@
               "type": "fill"
             }
           ],
+          "hide": false,
           "measurement": "kWh",
           "orderByTime": "ASC",
           "policy": "default",
+          "query": "SELECT mean(\"value\") FROM \"kWh\" WHERE (\"entity_id\" = 'powerfox_evi_energy_gift') AND $timeFilter GROUP BY time($__interval) fill(null)",
+          "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -2107,18 +2386,190 @@
             {
               "key": "entity_id",
               "operator": "=",
-              "value": "hichi_gth_sml_total_out"
+              "value": "powerfox_evi_energy_gift"
             }
           ]
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_INFLUXDB}"
+          },
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "kWh",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "entity_id::tag",
+              "operator": "=",
+              "value": "hoymiles_garage_yieldtotal"
+            }
+          ]
+        },
+        {
+          "datasource": {
+            "type": "__expr__",
+            "uid": "${DS_EXPRESSION}"
+          },
+          "expression": "$B - $A",
+          "hide": false,
+          "refId": "C",
+          "type": "math"
+        },
+        {
+          "datasource": {
+            "type": "__expr__",
+            "uid": "${DS_EXPRESSION}"
+          },
+          "expression": "$C / $B",
+          "hide": false,
+          "refId": "D",
+          "type": "math"
         }
       ],
-      "title": "Zählerstand Einspeisung",
+      "timeFrom": "90d",
+      "title": "Eigenverbrauch",
       "type": "stat"
     },
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "${DS_INFLUXDBHOMEASSISTANT}"
+        "uid": "${DS_INFLUXDB}"
+      },
+      "description": "Zählerstand Einspeisung",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "#a089ab",
+            "mode": "fixed"
+          },
+          "decimals": 1,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "kWh"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 4,
+        "x": 8,
+        "y": 20
+      },
+      "hideTimeOverride": true,
+      "id": 123146,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "10.1.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_INFLUXDB}"
+          },
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "kWh",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT mean(\"value\") FROM \"kWh\" WHERE (\"entity_id\" = 'powerfox_evi_energy_gift') AND $timeFilter GROUP BY time($__interval) fill(null)",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "entity_id",
+              "operator": "=",
+              "value": "powerfox_evi_energy_gift"
+            }
+          ]
+        }
+      ],
+      "timeFrom": "90d",
+      "title": "Einspeisung",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_INFLUXDB}"
       },
       "fieldConfig": {
         "defaults": {
@@ -2139,6 +2590,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "smooth",
             "lineWidth": 1,
             "pointSize": 5,
@@ -2177,13 +2629,28 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "Leistung Westen"
+              "options": "Leistung CH1"
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "blue",
+                  "fixedColor": "light-green",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Leistung CH2"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "light-blue",
                   "mode": "fixed"
                 }
               }
@@ -2198,22 +2665,7 @@
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "light-yellow",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "units.mean"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#6f6f6f",
+                  "fixedColor": "semi-dark-orange",
                   "mode": "fixed"
                 }
               }
@@ -2277,16 +2729,64 @@
               },
               {
                 "id": "max"
+              },
+              {
+                "id": "custom.lineStyle"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "light-purple",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Time"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "time: DD.MM"
+              }
+            ]
+          },
+          {
+            "__systemRef": "hideSeriesFrom",
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "exclude",
+                "names": [
+                  "Gesamtleistung AC",
+                  "Sonne",
+                  "Leistung Zaehler"
+                ],
+                "prefix": "All except:",
+                "readOnly": true
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": true
+                }
               }
             ]
           }
         ]
       },
       "gridPos": {
-        "h": 9,
+        "h": 8,
         "w": 20,
         "x": 0,
-        "y": 20
+        "y": 23
       },
       "id": 123138,
       "options": {
@@ -2296,6 +2796,9 @@
           "placement": "bottom",
           "showLegend": true
         },
+        "timezone": [
+          ""
+        ],
         "tooltip": {
           "mode": "single",
           "sort": "none"
@@ -2303,10 +2806,10 @@
       },
       "targets": [
         {
-          "alias": "Leistung Osten",
+          "alias": "Leistung CH1",
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_INFLUXDBHOMEASSISTANT}"
+            "uid": "${DS_INFLUXDB}"
           },
           "groupBy": [
             {
@@ -2345,15 +2848,15 @@
             {
               "key": "entity_id",
               "operator": "=",
-              "value": "hm800_ch2_power"
+              "value": "hoymiles_garage_ch1_power"
             }
           ]
         },
         {
-          "alias": "Leistung Westen",
+          "alias": "Leistung CH2",
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_INFLUXDBHOMEASSISTANT}"
+            "uid": "${DS_INFLUXDB}"
           },
           "groupBy": [
             {
@@ -2393,7 +2896,7 @@
             {
               "key": "entity_id",
               "operator": "=",
-              "value": "hm800_ch1_power"
+              "value": "hoymiles_garage_ch2_power"
             }
           ]
         },
@@ -2401,7 +2904,7 @@
           "alias": "Gesamtleistung AC",
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_INFLUXDBHOMEASSISTANT}"
+            "uid": "${DS_INFLUXDB}"
           },
           "groupBy": [
             {
@@ -2441,7 +2944,7 @@
             {
               "key": "entity_id",
               "operator": "=",
-              "value": "hm800_power"
+              "value": "hoymiles_garage_power"
             }
           ]
         },
@@ -2449,7 +2952,7 @@
           "alias": "Sonne",
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_INFLUXDBHOMEASSISTANT}"
+            "uid": "${DS_INFLUXDB}"
           },
           "groupBy": [
             {
@@ -2466,7 +2969,7 @@
             }
           ],
           "hide": false,
-          "measurement": "units",
+          "measurement": "°",
           "orderByTime": "ASC",
           "policy": "default",
           "query": "SELECT mean(\"elevation\") FROM \"units\" WHERE (\"entity_id\" = 'sun') AND $timeFilter GROUP BY time($__interval) fill(null)",
@@ -2477,7 +2980,7 @@
             [
               {
                 "params": [
-                  "elevation"
+                  "value"
                 ],
                 "type": "field"
               },
@@ -2491,7 +2994,7 @@
             {
               "key": "entity_id",
               "operator": "=",
-              "value": "sun"
+              "value": "sun_solar_elevation"
             }
           ]
         },
@@ -2499,7 +3002,7 @@
           "alias": "Leistung Zaehler",
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_INFLUXDBHOMEASSISTANT}"
+            "uid": "${DS_INFLUXDB}"
           },
           "groupBy": [
             {
@@ -2545,13 +3048,311 @@
             {
               "key": "entity_id",
               "operator": "=",
-              "value": "hichi_gth_sml_power_curr"
+              "value": "powerfox_evi_power"
             }
           ]
         }
       ],
       "timeFrom": "7d",
-      "title": "Leistung HM800 (7 Tage)",
+      "title": "Leistung HM600 (7 Tage)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_INFLUXDB}"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "bars",
+            "fillOpacity": 65,
+            "gradientMode": "hue",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "max": 30,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Grid"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-purple",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "yield"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Gift"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "yellow",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 20,
+        "x": 0,
+        "y": 31
+      },
+      "hideTimeOverride": false,
+      "id": 123148,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "alias": "Gift",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_INFLUXDB}"
+          },
+          "groupBy": [
+            {
+              "params": [
+                "1d"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "kWh",
+          "orderByTime": "ASC",
+          "policy": "autogen",
+          "query": "SELECT difference(max(\"value\")) FROM \"default\".\"kWh\" WHERE (\"entity_id\" = 'powerfox_evi_energy_gift') AND $timeFilter GROUP BY time(1d) fill(0)",
+          "rawQuery": false,
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [],
+                "type": "difference"
+              },
+              {
+                "params": [
+                  " * -1"
+                ],
+                "type": "math"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "entity_id::tag",
+              "operator": "=",
+              "value": "powerfox_evi_energy_gift"
+            }
+          ]
+        },
+        {
+          "alias": "yield",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_INFLUXDB}"
+          },
+          "groupBy": [
+            {
+              "params": [
+                "1d"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "kWh",
+          "orderByTime": "ASC",
+          "policy": "autogen",
+          "refId": "C",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [],
+                "type": "difference"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "entity_id::tag",
+              "operator": "=",
+              "value": "hoymiles_garage_yieldtotal"
+            }
+          ]
+        },
+        {
+          "alias": "Grid",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_INFLUXDB}"
+          },
+          "groupBy": [
+            {
+              "params": [
+                "1d"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "kWh",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT max(\"value\")-min(\"value\") FROM \"kWh\" WHERE (\"entity_id\" = 'hichi_gth_sml_total_in') AND $timeFilter GROUP BY time(1d) fill(0)",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "max"
+              },
+              {
+                "params": [],
+                "type": "difference"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "entity_id",
+              "operator": "=",
+              "value": "powerfox_evi_energy_use"
+            }
+          ]
+        }
+      ],
+      "timeFrom": "90d",
+      "title": "Energy (90 Tage)",
+      "transformations": [],
       "type": "timeseries"
     }
   ],
@@ -2597,6 +3398,6 @@
   "timezone": "browser",
   "title": "Solar",
   "uid": "3I9oqFyVz",
-  "version": 42,
+  "version": 28,
   "weekStart": ""
 }
