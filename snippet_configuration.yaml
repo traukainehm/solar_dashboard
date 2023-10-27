@@ -1,0 +1,47 @@
+# powerfox integration based on Simon42 https://www.simon42.com/home-assistant-stromzaehler/
+# as the API is quite unreliable and occasionally delivers the consumption value in both counters, return value is just skipped in those cases
+
+rest:
+  - authentication: basic
+    username: user@ domain # replace with your email
+    password: _password_ # replace with your password
+    scan_interval: 30
+    resource: https://backend.powerfox.energy/api/2.0/my/main/current?unit=kwh
+    sensor:
+      - name: "poweropti"
+        json_attributes:
+          - "Watt"
+          - "Timestamp"
+          - "A_Plus"
+          - "A_Minus"
+          - "Outdated"
+
+
+template:
+  - sensor:
+      - name: "powerfox_EVI_power"
+        unit_of_measurement: "W"
+        device_class: "power"
+        state_class: "measurement"
+        state: >
+          {{ state_attr('sensor.poweropti', 'Watt') }}
+      - name: "powerfox_EVI_energy_use"
+        unit_of_measurement: "kWh"
+        device_class: "energy"
+        state_class: "total_increasing"
+        state: >
+          {{ state_attr('sensor.poweropti', 'A_Plus') }}
+      - name: "powerfox_EVI_energy_gift"
+        unit_of_measurement: "kWh"
+        device_class: "energy"
+        state_class: "total_increasing"
+        state: >
+          {{ state_attr('sensor.poweropti', 'A_Minus') }}
+      - name: "poweropti_EVI_energy_return"
+        unit_of_measurement: "kWh"
+        device_class: "energy"
+        state_class: "total_increasing"
+        state: >
+          {% if state_attr('sensor.poweropti', 'A_Plus') != state_attr('sensor.poweropti', 'A_Minus') %}
+            {{ state_attr('sensor.poweropti', 'A_Minus') }}
+          {% endif %}
